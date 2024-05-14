@@ -22,7 +22,7 @@ export class MessageGateway implements OnModuleInit {
       socket.on('message', data => {
         console.log('Received message:', data);
       });
-      socket.on('')
+      //socket.on('')
       socket.on('disconnect', () => {
         console.log('disconnected');
       });
