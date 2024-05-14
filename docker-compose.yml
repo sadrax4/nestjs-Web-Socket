@@ -1,48 +1,12 @@
 services:
-  # mongo:
-  #   image: mongo
-  #   environment:
-  #     - MONGODB_URL:mongodb://localhost:27018/nest_rabbit
-  #   ports:
-  #     - 27017:27017
-  orders:
+  app:
     build:
       context: .
-      dockerfile: ./apps/orders/Dockerfile
-      target: development
-    command: npm run start:dev orders
-    env_file:
-      - ./apps/orders/.env
-    depends_on:
-      - billing
-      - mongodb-primary
-      - mongodb-secondary
-      - mongodb-arbiter
-      - rabbitmq
-      - auth
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      dockerfile: Dockerfile
+    container_name: nest-docker-postgres
+    environment:
+      - PORT=${PORT}
     ports:
       - '3000:3000'
-  profile:
-    build:
-      context: .
-      dockerfile: ./apps/profile/Dockerfile
-      target: development
-    command: npm run start:dev profile
-    env_file:
-      - ./apps/profile/.env
-    depends_on:
-      - rabbitmq
-      - mongodb-primary
-      - mongodb-secondary
-      - mongodb-arbiter
-      - auth
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    ports:
-      - '3002:3002'
-
-  
+      - ./src:/app/src
