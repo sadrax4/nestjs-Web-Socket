@@ -2,8 +2,8 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: nest-docker-postgres
+      dockerfile: ./src/Dockerfile
+    container_name: nest-web_socket
     environment:
       - PORT=${PORT}
     ports:

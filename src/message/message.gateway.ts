@@ -32,14 +32,13 @@ export class MessageGateway implements OnModuleInit {
 
   @SubscribeMessage('send_message')
   create(
-    @MessageBody() createMessageDto: CreateMessageDto,
-    @ConnectedSocket() client: Socket
+    client: Socket, payload: any
   ) {
     client.on("connect", () => {
       console.log("client connect")
     })
-    this.server.emit('chat', createMessageDto)
-    return this.messageService.create(createMessageDto);
+    this.server.emit('chat', payload)
+    return this.messageService.create(payload);
   }
 
   @SubscribeMessage('')
