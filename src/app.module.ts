@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MessageModule } from './message/message.module';
 import { ConfigModule } from '@nestjs/config';
-import { GroupModule } from './group/group.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -9,7 +9,7 @@ import { GroupModule } from './group/group.module';
       isGlobal: true,
     }),
     MessageModule,
-    GroupModule
+    AuthModule
   ],
   controllers: [],
   providers: [],
